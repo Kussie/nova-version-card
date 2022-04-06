@@ -1,0 +1,46 @@
+{
+    "name": "kussie/nova-version-card",
+    "description": "A Laravel Nova card to show some system versions.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ben Kuskopf",
+            "email": "ben@kussie.com.au",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "laravel/nova": "^4.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.6",
+        "phpunit/phpunit": "7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kussie\\VersionCard\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kussie\\VersionCard\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kussie\\VersionCard\\CardServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
