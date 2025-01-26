@@ -9,6 +9,10 @@
           <td class="p-2">{{ os }}</td>
         </tr>
         <tr>
+          <td class="p-2 font-bold">App Version</td>
+          <td class="p-2">{{ app }}</td>
+        </tr>
+        <tr>
           <td class="p-2 font-bold">PHP Version</td>
           <td class="p-2">{{ php }}</td>
         </tr>
@@ -46,6 +50,8 @@ export default {
         os: null,
         php: null,
         database: null,
+        app: null,
+        laravel: null,
       }
     },
 
@@ -54,6 +60,7 @@ export default {
         .then(({data}) => {
           this.os = data.os
           this.php = data.php
+          this.app = data.app
           this.database = data.database
           this.laravel = data.laravel
           this.nova = data.nova

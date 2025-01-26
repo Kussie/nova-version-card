@@ -13,7 +13,8 @@ class VersionController
             'os' => php_uname('s') . ' (' . php_uname('r') . ' - ' . php_uname('v') . ')',
             'php' => phpversion(),
             'database' => $this->getDatabase(),
-            'laravel' => app()->version(),
+            'laravel' => \Illuminate\Foundation\Application::VERSION,
+            'app' => app()->version(),
             'nova' => Nova::version(),
         ];
     }
@@ -31,7 +32,7 @@ class VersionController
             return 'Unkown';
         }
 
-        $results = DB::select("select version() as version");
+        $results = \Illuminate\Support\Facades\DB::select("select version() as version");
 
         return $results[0]->version;
     }
