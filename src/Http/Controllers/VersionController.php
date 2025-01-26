@@ -22,18 +22,25 @@ class VersionController
     private function getDatabase()
     {
         $knownDatabases = [
-            'sqlite',
-            'mysql',
-            'pgsql',
-            'sqlsrv',
+            'sqlite' => 'SQLite',
+            'mysql' => 'MySQL',
+            'pgsql' => 'PostgreSQL',
+            'sqlsrv' => 'SQL Server',
         ];
 
-        if (! in_array(config('database.default'), $knownDatabases)) {
-            return 'Unkown';
+        $databaseType = config('database.default');
+
+        if (! array_key_exists($databaseType, $knownDatabases)) {
+            return 'Unknown Database Type';
         }
 
-        $results = \Illuminate\Support\Facades\DB::select("select version() as version");
+        try {
+            $results = \Illuminate\Support\Facades\DB::select("select version() as version");
+            $databaseVersion = $results[0]->version ?? 'Unknown Version';
 
-        return $results[0]->version;
+            return "{$knownDatabases[$databaseType]} - {$databaseVersion}";
+        } catch (\Exception $e) {
+            return "{$knownDatabases[$databaseType]} - Unable to fetch version: " . $e->getMessage();
+        }
     }
 }
